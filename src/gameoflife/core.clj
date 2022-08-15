@@ -66,27 +66,3 @@
   (grid/visualize (first (ticks initial-grid)))
   (grid/visualize (second (ticks initial-grid)))
   (type (take 10 (ticks initial-grid))))
-
-
-(defn game-loop [starting-grid loops]
-  (let [delay (quot 1000 10)]
-    (loop [grid starting-grid
-           n loops]
-      (print
-       (with-out-str
-         (p/pprint (grid/visualize grid))
-         (println "\n")))
-      (flush)
-      (Thread/sleep delay)
-      (if (= 0 n) nil
-          (recur (tick grid) (dec n))))))
-
-(comment
-  ; one tick
-  (p/pprint (grid/visualize (tick initial-grid)))
-  ; running game loop n iterations
-  (game-loop initial-grid 100))
-
-(defn -main
-  [& args]
-  "doing nothing")
