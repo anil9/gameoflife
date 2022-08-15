@@ -5,7 +5,7 @@
 
 (def state {:dead "_"
             :alive "█"})
-(def grid-size 15)
+(def grid-size 100)
 (comment
   (prn state))
 
@@ -59,6 +59,15 @@
   (->> (range (count grid))
        (mapv #(tick-cell % grid))))
 
+(defn ticks [initial-grid]
+  (concat (iterate tick initial-grid)))
+
+(comment
+  (grid/visualize (first (ticks initial-grid)))
+  (grid/visualize (second (ticks initial-grid)))
+  (type (take 10 (ticks initial-grid))))
+
+
 (defn game-loop [starting-grid loops]
   (let [delay (quot 1000 10)]
     (loop [grid starting-grid
@@ -80,6 +89,4 @@
 
 (defn -main
   [& args]
-  (let [iterations 100]
-    (game-loop initial-grid iterations)))
-
+  "doing nothing")

@@ -12,11 +12,14 @@
 (comment
   (neighbors [1 1]))
 
-(defn sqrt [x]
+(defn- sqrt [x]
   (int (Math/sqrt x)))
 
+(defn size [grid]
+  (sqrt (count grid)))
+
 (defn visualize [grid]
-  (partition (sqrt (count grid)) grid))
+  (partition (size grid) grid))
 
 (defn generate [size]
   (vec (->> (range (* size size))
